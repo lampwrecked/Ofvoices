@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Of Voices at Cycol Gallery</title>
+<meta name="description" content="Of Voices: Danielle Mastrion, Diane Lindo and Rebecca Rose. Curated by J.T. Liss. Opening reception and reveal of Cycol 2.0, November 6, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: one dark gallery world. Hero is a billboard of three equal panels; each artist section repeats the same structure. */
+  --ink: #0c0b10;
+  --panel: #15131b;
+  --line: #2a2733;
+  --text: #f2ede7;
+  --muted: #a59fae;
+  --danielle: #d6454c;
+  --diane: #8b72ff;
+  --rebecca: #4aa3b5;
+  --display: "Playfair Display", Didot, "Times New Roman", serif; /* headline, matches the posters */
+  --caps: Cinzel, "Trajan Pro", Georgia, serif; /* artist names and piece titles, matches the art tags */
+  --body: Inter, "Helvetica Neue", Arial, sans-serif; /* matches the poster and logo sans */
+  --accent: var(--danielle);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--ink); color: var(--text); font: 400 1rem/1.55 var(--body); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.eyebrow { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 0; }
+
+/* top bar */
+.bar { border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding-block: 14px; }
+.brand { display: block; text-decoration: none; }
+.brand img { height: 44px; width: auto; }
+.bar nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .86rem; }
+.bar nav a { text-decoration: none; color: var(--muted); }
+.bar nav a:hover { color: var(--text); }
+
+/* hero */
+.hero { padding: 32px 0 24px; text-align: center; }
+.hero-logo-link { display: inline-block; }
+.hero-logo { height: clamp(64px, 14vw, 120px); width: auto; margin: 0 auto; }
+.hero h1 { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(3.4rem, 13vw, 9rem); line-height: .95; letter-spacing: .01em; margin: 20px 0 28px; text-wrap: balance; }
+.names { display: flex; flex-wrap: nowrap; justify-content: center; gap: 0 .7em; white-space: nowrap; font-size: clamp(.5rem, 2.7vw, 1.2rem); letter-spacing: .1em; text-transform: uppercase; margin: 0 0 8px; }
+.names span + span::before { content: "·"; margin-right: .7em; color: var(--muted); }
+.curator { margin: 28px 0 0; font-size: .85rem; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.triptych { --h: min(calc((min(100vw, 1180px) - 56px) / 3 / 0.738), 560px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; justify-items: center; gap: 12px; text-align: left; }
+.panel { position: relative; display: block; width: fit-content; max-width: 100%; text-decoration: none; overflow: hidden; }
+.panel img { display: block; height: var(--h); width: auto; max-width: 100%; transition: transform .6s ease; }
+.p-diane img { height: auto; width: calc(var(--h) * 0.738); }
+.panel:hover img { transform: scale(1.03); }
+.panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,11,16,.85) 0%, rgba(12,11,16,0) 50%); }
+.panel .cap { position: absolute; left: clamp(6px, 1.6vw, 18px); right: clamp(6px, 1.6vw, 18px); bottom: clamp(8px, 1.6vw, 16px); z-index: 1; }
+.panel .cap b { display: block; text-align: center; font-family: var(--caps); font-size: clamp(.62rem, 2.4vw, 1.5rem); font-weight: 500; line-height: 1.15; letter-spacing: .02em; text-transform: uppercase; }
+.panel .cap span { display: block; margin-top: 3px; font-size: clamp(.55rem, 1.6vw, .8rem); letter-spacing: .08em; text-transform: uppercase; }
+.event { margin-top: 36px; padding: 22px 0; border-block: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px; text-align: center; }
+.event b { font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+
+/* artist sections */
+.artist { padding: 72px 0 24px; scroll-margin-top: 8px; }
+.a-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; padding-bottom: 18px; margin-bottom: 28px; border-bottom: 3px solid var(--accent); }
+.a-head h2 { font-family: var(--caps); font-weight: 700; text-transform: uppercase; letter-spacing: .02em; font-size: clamp(2.4rem, 7vw, 4.5rem); line-height: 1; margin: 6px 0 0; text-wrap: balance; }
+.a-head .count { color: var(--accent); font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; display: flex; flex-direction: column; overflow: hidden; }
+.card .art { aspect-ratio: 4 / 3; background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 28%, var(--panel)), var(--panel) 70%); display: grid; place-items: center; padding: 16px; text-align: center; }
+.card .art:has(img) { display: block; padding: 0; aspect-ratio: auto; background: #000; }
+.card .art:has(video) { display: block; padding: 0; aspect-ratio: auto; background: #000; }
+.card .art img, .card .art video { display: block; width: 100%; height: auto; object-fit: contain; }
+.card .art.ph { font-family: var(--caps); text-transform: uppercase; letter-spacing: .04em; font-size: 1.15rem; line-height: 1.15; color: color-mix(in srgb, var(--accent) 60%, var(--text)); }
+.card .art.ph small { display: block; margin-top: 8px; font-family: var(--body); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.card .body { padding: 18px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.card h3 { font-family: var(--caps); font-weight: 700; font-size: 1.15rem; letter-spacing: .03em; text-transform: uppercase; line-height: 1.15; margin: 0; text-wrap: balance; }
+.meta { color: var(--muted); font-size: .88rem; margin: 0; }
+.price { font-size: 1.25rem; font-weight: 600; margin: 10px 0 14px; font-variant-numeric: tabular-nums; }
+.note { color: var(--muted); font-size: .8rem; margin: 0 0 14px; }
+.btn { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; background: var(--accent); color: #0c0b10; font-weight: 600; font-size: .95rem; text-decoration: none; border-radius: 3px; letter-spacing: .02em; border: 0; cursor: pointer; font-family: inherit; }
+.btn:hover { filter: brightness(1.12); }
+.art { position: relative; }
+.art-link { display: block; cursor: pointer; }
+.art-link:hover { filter: brightness(1.06); }
+.vctl { display: flex; gap: 8px; padding: 12px 18px 0; }
+.vbtn { min-height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid var(--line); background: transparent; color: var(--text); font: 500 .8rem var(--body); cursor: pointer; }
+.vbtn:hover { border-color: var(--accent); }
+.btn-note { color: var(--muted); font-size: .8rem; margin: 8px 0 0; min-height: 1.2em; }
+
+/* featured story card */
+.story { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); border: 1px solid var(--line); background: var(--panel); border-radius: 4px; overflow: hidden; }
+.story .art { min-height: 0; align-self: start; }
+.story .art { display: grid; place-items: center; padding: 16px; background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 28%, var(--panel)), var(--panel) 70%); font-family: var(--caps); text-transform: uppercase; letter-spacing: .04em; font-size: 1.4rem; text-align: center; }
+.story .art small { display: block; margin-top: 8px; font-family: var(--body); font-size: .7rem; letter-spacing: .14em; color: var(--muted); }
+.story .art:has(img) { padding: 0; background: #000; }
+.story .art img { display: block; width: 100%; height: auto; }
+.story .txt { padding: clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 8px; }
+.story h3 { font-family: var(--caps); text-transform: uppercase; letter-spacing: .03em; font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 700; line-height: 1.05; margin: 0 0 4px; }
+.story blockquote { margin: 14px 0; padding: 0; font-size: clamp(1rem, 2vw, 1.12rem); line-height: 1.65; }
+.story blockquote footer { margin-top: 10px; font-family: var(--body); font-size: .85rem; color: var(--muted); letter-spacing: .06em; }
+.tag { display: inline-block; align-self: flex-start; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 3px 8px; border-radius: 2px; }
+
+footer.site { margin-top: 80px; border-top: 1px solid var(--line); padding: 40px 0 56px; color: var(--muted); font-size: .9rem; }
+footer.site .wrap { display: flex; flex-wrap: wrap; gap: 12px 40px; justify-content: space-between; }
+footer.site .logo { height: 64px; width: auto; margin-bottom: 12px; }
+footer.site p { margin: 0; }
+footer.site a { color: var(--text); }
+
+@media (max-width: 760px) {
+  .triptych { gap: 6px; }
+  .story { grid-template-columns: 1fr; }
+  .story .art { min-height: 0; aspect-ratio: 16 / 10; }
+  .story .art:has(img) { aspect-ratio: auto; }
+  .artist { padding-top: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .panel img, .panel video { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <a class="hero-logo-link" href="https://cycolgallery.com" target="_blank" rel="noopener" aria-label="Cycol Gallery website"><img class="hero-logo" src="img/cycol-logo.png" alt="Cycol Gallery" width="700" height="413"></a>
+      <h1>Of Voices</h1>
+
+      <div class="triptych">
+        <a class="panel p-danielle" href="#danielle-mastrion">
+          <img src="img/rose-face-hero.jpg" alt="Danielle Mastrion's mural Rose Face: a red rose and painted lips" width="1181" height="1600">
+          <div class="cap"><b>Danielle Mastrion</b></div>
+        </a>
+        <a class="panel p-diane" href="#diane-lindo">
+          <img src="img/diane-hero.jpg" alt="Diane Lindo, Off My Chest: a figure lit in pink and blue" width="1080" height="1080">
+          <div class="cap"><b>Diane Lindo</b></div>
+        </a>
+        <a class="panel p-rebecca" href="#rebecca-rose">
+          <img src="img/rebecca-hero.jpg" alt="Rebecca Rose, Whip Out the Paints and Get To It" width="1080" height="1463">
+          <div class="cap"><b>Rebecca Rose</b></div>
+        </a>
+      </div>
+
+      <p class="curator">Curated by JT Liss</p>
+    </div>
+  </section>
+
+  <!-- DANIELLE MASTRION -->
+  <section class="artist a-danielle" id="danielle-mastrion">
+    <div class="wrap">
+      <header class="a-head">
+        <div><h2>Danielle Mastrion</h2></div>
+        <p class="meta">Aerosol and acrylic on wood and canvas</p>
+      </header>
+
+      <div class="grid">
+        <article class="story">
+          <div class="art"><a class="art-link" href="#" data-piece="rose-face" aria-label="Open Rose Face"><img src="img/rose-face.jpg" alt="Rose Face by Danielle Mastrion" width="1200" height="1600" loading="lazy"></a></div>
+          <div class="txt">
+            <h3>Rose Face</h3>
+            <p class="meta">Aerosol on wood panel · 72 × 96 in · 2015</p>
+            <blockquote>
+              “Rose Face” has lived three distinct lives, showcasing how beloved murals take on a life of their own. Originally painted in 2015 on an abandoned Lafayette &amp; Grand Street nightclub door, the mural was salvaged in 2017 by new tenants who mounted and displayed it inside for years. After being left behind during yet another transition, the current owner tracked Danielle down in February 2026 to safely return it. Today, “Rose Face” enjoys its third rebirth at Cycol Gallery, celebrating the enduring public spirit of Lower East Side street art.
+              <footer>Danielle Mastrion</footer>
+            </blockquote>
+            <p class="price">$20,000</p>
+            <a class="btn" href="#" data-piece="rose-face">Collect Rose Face</a>
+            <p class="btn-note" aria-live="polite"></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="#" data-piece="thrills" aria-label="Open Thrills"><img src="img/thrills.jpg" alt="Thrills by Danielle Mastrion" width="1600" height="1245" loading="lazy"></a></div>
+          <div class="body">
+            <h3>Thrills</h3>
+            <p class="meta">Acrylic and aerosol on canvas · 48 × 60 in · 2026</p>
+            <p class="price">$6,000</p>
+            <a class="btn" href="#" data-piece="thrills">Collect Thrills</a>
+            <p class="btn-note" aria-live="polite"></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="#" data-piece="cyclone" aria-label="Open Cyclone"><img src="img/cyclone.jpg" alt="Cyclone by Danielle Mastrion" width="1247" height="1600" loading="lazy"></a></div>
+          <div class="body">
+            <h3>Cyclone</h3>
+            <p class="meta">Acrylic and aerosol on canvas · 48 × 60 in · 2026</p>
+            <p class="price">$6,000</p>
+            <a class="btn" href="#" data-piece="cyclone">Collect Cyclone</a>
+            <p class="btn-note" aria-live="polite"></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="#" data-piece="deli" aria-label="Open Deli"><img src="img/deli.jpg" alt="Deli by Danielle Mastrion" width="1600" height="1294" loading="lazy"></a></div>
+          <div class="body">
+            <h3>Deli</h3>
+            <p class="meta">Acrylic and aerosol on canvas · 48 × 60 in · 2026</p>
+            <p class="price">$6,000</p>
+            <a class="btn" href="#" data-piece="deli">Collect Deli</a>
+            <p class="btn-note" aria-live="polite"></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="#" data-piece="neon-tower" aria-label="Open Neon Tower"><img src="img/neon-tower.jpg" alt="Neon Tower by Danielle Mastrion" width="1262" height="1600" loading="lazy"></a></div>
+          <div class="body">
+            <h3>Neon Tower</h3>
+            <p class="meta">Acrylic and aerosol on canvas · 16 × 20 in · 2025</p>
+            <p class="price">$1,800</p>
+            <a class="btn" href="#" data-piece="neon-tower">Collect Neon Tower</a>
+            <p class="btn-note" aria-live="polite"></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="#" data-piece="apollo" aria-label="Open Apollo"><img src="img/apollo.jpg" alt="Apollo by Danielle Mastrion" width="1281" height="1600" loading="lazy"></a></div>
+          <div class="body">
+            <h3>Apollo</h3>
+            <p class="meta">Acrylic and aerosol on canvas · 16 × 20 in · 2025</p>
+            <p class="price">$1,800</p>
+            <a class="btn" href="#" data-piece="apollo">Collect Apollo</a>
+            <p class="btn-note" aria-live="polite"></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIANE LINDO -->
+  <section class="artist a-diane" id="diane-lindo">
+    <div class="wrap">
+      <header class="a-head">
+        <div><h2>Diane Lindo</h2></div>
+        <p class="meta">Collected on SuperRare</p>
+      </header>
+
+      <div class="grid">
+        <article class="card">
+          <div class="art"><a class="art-link" href="https://superrare.com/artwork/eth/0x3A63c35Aecf8Fd0f6340fF4Fc078E93ee59E980D/6" target="_blank" rel="noopener" aria-label="Open Off My Chest"><video src="vid/off-my-chest.mp4" poster="vid/off-my-chest-poster.jpg" muted loop playsinline preload="metadata" aria-label="Off My Chest by Diane Lindo" width="600" height="600"></video></a></div><div class="vctl"><button type="button" class="vbtn" data-act="play">Play</button><button type="button" class="vbtn" data-act="sound" aria-pressed="false">Sound off</button></div>
+          <div class="body">
+            <h3>Off My Chest</h3>
+            <p class="meta">SuperRare</p>
+            <p class="price">$2,407.25</p>
+            <a class="btn" href="https://superrare.com/artwork/eth/0x3A63c35Aecf8Fd0f6340fF4Fc078E93ee59E980D/6" target="_blank" rel="noopener">Collect on SuperRare</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="https://superrare.com/artwork/eth/0x3A63c35Aecf8Fd0f6340fF4Fc078E93ee59E980D/7" target="_blank" rel="noopener" aria-label="Open Untitled 01"><video src="vid/untitled-01.mp4" poster="vid/untitled-01-poster.jpg" muted loop playsinline preload="metadata" aria-label="Untitled 01 by Diane Lindo" width="600" height="600"></video></a></div><div class="vctl"><button type="button" class="vbtn" data-act="play">Play</button><button type="button" class="vbtn" data-act="sound" aria-pressed="false">Sound off</button></div>
+          <div class="body">
+            <h3>Untitled 01</h3>
+            <p class="meta">SuperRare</p>
+            <p class="price">$802.50</p>
+            <a class="btn" href="https://superrare.com/artwork/eth/0x3A63c35Aecf8Fd0f6340fF4Fc078E93ee59E980D/7" target="_blank" rel="noopener">Collect on SuperRare</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REBECCA ROSE -->
+  <section class="artist a-rebecca" id="rebecca-rose">
+    <div class="wrap">
+      <header class="a-head">
+        <div><h2>Rebecca Rose</h2></div>
+        <p class="meta">Digital collage</p>
+      </header>
+
+      <div class="grid">
+        <article class="card">
+          <div class="art"><a class="art-link" href="https://opensea.io/collection/whipoutthepaintsandgettoit" target="_blank" rel="noopener" aria-label="Open Whip Out The Paints and Get To It"><video src="vid/whip-out-the-paints.mp4" poster="vid/whip-out-the-paints-poster.jpg" muted loop playsinline preload="metadata" aria-label="Whip Out The Paints and Get To It by Rebecca Rose" width="540" height="960"></video></a></div><div class="vctl"><button type="button" class="vbtn" data-act="play">Play</button></div>
+          <div class="body">
+            <h3>Whip Out The Paints and Get To It</h3>
+            <p class="meta">Digital collage · Limited edition of 50</p>
+            <p class="price">$333.00</p>
+            <a class="btn" href="https://opensea.io/collection/whipoutthepaintsandgettoit" target="_blank" rel="noopener">Collect on OpenSea</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="https://objkt.com/tokens/KT1TRGDmZWYc4ng4YwhCNKpegbhZ7wVaKvHa/4" target="_blank" rel="noopener" aria-label="Open Seaweed Salad"><video src="vid/seaweed-salad.mp4" poster="vid/seaweed-salad-poster.jpg" muted loop playsinline preload="metadata" aria-label="Seaweed Salad by Rebecca Rose" width="540" height="960"></video></a></div><div class="vctl"><button type="button" class="vbtn" data-act="play">Play</button><button type="button" class="vbtn" data-act="sound" aria-pressed="false">Sound off</button></div>
+          <div class="body">
+            <h3>Seaweed Salad</h3>
+            <p class="meta">Digital collage · 1920 × 1080 px · 1 of 1</p>
+            <p class="price">$1,025.00</p>
+            <a class="btn" href="https://objkt.com/tokens/KT1TRGDmZWYc4ng4YwhCNKpegbhZ7wVaKvHa/4" target="_blank" rel="noopener">Collect on objkt</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art"><a class="art-link" href="https://superrare.com/artwork/eth/0xC79290B0bD86acc8fA822B1ff2155A6880A74ca7/1" target="_blank" rel="noopener" aria-label="Open Outlaw Express"><video src="vid/outlaw-express.mp4" poster="vid/outlaw-express-poster.jpg" muted loop playsinline preload="metadata" aria-label="Outlaw Express by Rebecca Rose" width="540" height="960"></video></a></div><div class="vctl"><button type="button" class="vbtn" data-act="play">Play</button><button type="button" class="vbtn" data-act="sound" aria-pressed="false">Sound off</button></div>
+          <div class="body">
+            <h3>Outlaw Express</h3>
+            <p class="meta">Digital collage · 1920 × 1080 px · 1 of 1</p>
+            <p class="price">$4,867.00</p>
+            <a class="btn" href="https://superrare.com/artwork/eth/0xC79290B0bD86acc8fA822B1ff2155A6880A74ca7/1" target="_blank" rel="noopener">Collect on SuperRare</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <a href="https://cycolgallery.com" target="_blank" rel="noopener" aria-label="Cycol Gallery website"><img class="logo" src="img/cycol-logo.png" alt="Cycol gallery" width="700" height="413"></a>
+      <p>91 Allen St, New York, NY 10002</p>
+      <p><a href="https://cycolgallery.com" target="_blank" rel="noopener">cycolgallery.com</a></p>
+      <p>Powered by Solana × BONK</p>
+    </div>
+    <div>
+      <p><b>Of Voices</b> · Curated by J.T. Liss</p>
+      <p>Opening reception and reveal of Cycol 2.0, November 6, 2026</p>
+      <p>Ask at the front desk for stablecoin and crypto purchasing.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Purchase links for Danielle Mastrion's works. Paste each URL between the quotes. */
+var DANIELLE_LINKS = {
+  "rose-face": "",
+  "thrills": "",
+  "cyclone": "",
+  "deli": "",
+  "neon-tower": "",
+  "apollo": ""
+};
+
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.querySelectorAll(".panel video").forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); });
+}
+
+document.querySelectorAll(".vbtn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var v = b.closest("article").querySelector("video");
+    if (!v) return;
+    if (b.dataset.act === "play") {
+      if (v.paused) { v.play().catch(function () {}); } else { v.pause(); }
+    } else {
+      v.muted = !v.muted;
+      if (!v.muted && v.paused) { v.play().catch(function () {}); }
+      b.textContent = v.muted ? "Sound off" : "Sound on";
+      b.setAttribute("aria-pressed", String(!v.muted));
+    }
+  });
+});
+document.querySelectorAll(".art video").forEach(function (v) {
+  var play = v.closest("article").querySelector('[data-act="play"]');
+  v.addEventListener("play", function () { if (play) play.textContent = "Pause"; });
+  v.addEventListener("pause", function () { if (play) play.textContent = "Play"; });
+});
+
+document.querySelectorAll("a[data-piece]").forEach(function (a) {
+  var url = DANIELLE_LINKS[a.getAttribute("data-piece")];
+  if (url) {
+    a.href = url; a.target = "_blank"; a.rel = "noopener";
+    return;
+  }
+  a.addEventListener("click", function (e) {
+    e.preventDefault();
+    var note = a.closest("article").querySelector(".btn-note");
+    if (note) note.textContent = "Purchase link coming soon. Ask at the front desk.";
+  });
+});
+</script>
+</body>
+</html>
